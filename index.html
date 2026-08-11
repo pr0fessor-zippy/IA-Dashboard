@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class Links</title>
+<style>
+  :root{
+    --mist: #dbe6e4;
+    --pine-deep: #16221f;
+    --panel: rgba(18, 28, 26, 0.55);
+    --panel-border: rgba(219, 230, 228, 0.18);
+    --accent: #7fb6a8;
+    --accent-soft: #9fd0c2;
+    --text: #eef4f2;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      linear-gradient(180deg, rgba(10,16,15,0.55) 0%, rgba(10,16,15,0.35) 40%, rgba(8,13,12,0.75) 100%),
+      url('https://images.unsplash.com/photo-1672944777008-bfccc150d775?fm=jpg&q=80&w=2400&auto=format&fit=crop') center center / cover no-repeat fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    padding: 36px 28px 32px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  }
+
+  h1 {
+    color: var(--text);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 0 0 6px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+  .subtitle {
+    text-align: center;
+    color: var(--mist);
+    opacity: 0.75;
+    font-size: 0.85rem;
+    margin: 0 0 28px;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--pine-deep);
+    background: linear-gradient(180deg, var(--accent-soft), var(--accent));
+    font-weight: 600;
+    font-size: 1.02rem;
+    letter-spacing: 0.03em;
+    padding: 15px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+
+  .link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+    filter: brightness(1.05);
+  }
+
+  .link-btn:active {
+    transform: translateY(0px) scale(0.99);
+  }
+
+  footer {
+    text-align: center;
+    color: var(--mist);
+    opacity: 0.55;
+    font-size: 0.75rem;
+    margin-top: 26px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Class Links</h1>
+    <p class="subtitle">Tap a room to join</p>
+
+    <div class="links">
+      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159564" target="_blank" rel="noopener">FORUM</a>
+      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=156751" target="_blank" rel="noopener">MATH</a>
+      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=160528" target="_blank" rel="noopener">ENGLISH</a>
+      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=151502" target="_blank" rel="noopener">HISTORY</a>
+      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=85662" target="_blank" rel="noopener">LOUNGE</a>
+      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154365" target="_blank" rel="noopener">ADOBE</a>
+      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=153973" target="_blank" rel="noopener">SCIENCE</a>
+    </div>
+
+    <footer>Foggy mountain photo via Unsplash</footer>
+  </div>
+
+</body>
+</html>
