@@ -71,7 +71,14 @@
     gap: 14px;
   }
 
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   .link-btn {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,6 +93,17 @@
     border: 1px solid rgba(255,255,255,0.25);
     box-shadow: 0 6px 16px rgba(0,0,0,0.25);
     transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+
+  .time {
+    flex-shrink: 0;
+    width: 84px;
+    text-align: right;
+    color: var(--mist);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
   }
 
   .link-btn:hover {
@@ -114,13 +132,34 @@
     <p class="subtitle">Tap a room to join</p>
 
     <div class="links">
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159564" target="_blank" rel="noopener">FORUM</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=156751" target="_blank" rel="noopener">MATH</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=160528" target="_blank" rel="noopener">ENGLISH</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=151502" target="_blank" rel="noopener">HISTORY</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=85662" target="_blank" rel="noopener">LOUNGE</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154365" target="_blank" rel="noopener">ADOBE</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=153973" target="_blank" rel="noopener">SCIENCE</a>
+      <div class="row">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159564" target="_blank" rel="noopener">FORUM</a>
+        <span class="time">8:00-9:00</span>
+      </div>
+      <div class="row">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=156751" target="_blank" rel="noopener">MATH</a>
+        <span class="time">9:00-10:00</span>
+      </div>
+      <div class="row">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=160528" target="_blank" rel="noopener">ENGLISH</a>
+        <span class="time">10:00-11:00</span>
+      </div>
+      <div class="row">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=151502" target="_blank" rel="noopener">HISTORY</a>
+        <span class="time">11:00-12:00</span>
+      </div>
+      <div class="row">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=85662" target="_blank" rel="noopener">LOUNGE</a>
+        <span class="time">12:00-1:00</span>
+      </div>
+      <div class="row">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154365" target="_blank" rel="noopener">ADOBE</a>
+        <span class="time">1:00-2:00</span>
+      </div>
+      <div class="row">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=153973" target="_blank" rel="noopener">SCIENCE</a>
+        <span class="time">2:00-3:00</span>
+      </div>
     </div>
 
     <footer>Foggy mountain photo via Unsplash</footer>
