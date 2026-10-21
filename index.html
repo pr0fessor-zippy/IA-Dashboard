@@ -37,7 +37,7 @@
 
   .card {
     width: 100%;
-    max-width: 420px;
+    max-width: 480px;
     background: var(--panel);
     border: 1px solid var(--panel-border);
     border-radius: 20px;
@@ -71,7 +71,14 @@
     gap: 14px;
   }
 
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
   .link-btn {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +92,7 @@
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.25);
     box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease, background 0.4s ease, color 0.4s ease;
   }
 
   .link-btn:hover {
@@ -96,6 +103,38 @@
 
   .link-btn:active {
     transform: translateY(0px) scale(0.99);
+  }
+
+  .link-btn.live {
+    background: linear-gradient(180deg, #9b2222, #5e0f0f);
+    color: #ffffff;
+    border-color: rgba(255,190,190,0.35);
+    box-shadow: 0 0 0 2px rgba(155,34,34,0.35), 0 8px 20px rgba(0,0,0,0.4);
+  }
+
+  .time {
+    flex-shrink: 0;
+    width: 120px;
+    text-align: right;
+    color: var(--mist);
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  }
+
+  .time .hrs {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .time .days {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+    white-space: nowrap;
   }
 
   footer {
@@ -111,22 +150,98 @@
 
   <div class="card">
     <h1>Class Links</h1>
-    <p class="subtitle">Tap a room to join</p>
+    <p class="subtitle">Tap a room to join &middot; all times Central</p>
 
     <div class="links">
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159564" target="_blank" rel="noopener">FORUM</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=156751" target="_blank" rel="noopener">MATH</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=160528" target="_blank" rel="noopener">ENGLISH</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=151502" target="_blank" rel="noopener">HISTORY</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=85662" target="_blank" rel="noopener">LOUNGE</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154365" target="_blank" rel="noopener">ADOBE</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=153973" target="_blank" rel="noopener">SCIENCE</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159482" target="_blank" rel="noopener">BIBLE</a>
-      <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154351" target="_blank" rel="noopener">PHOTOGRAPHY</a>
+
+      <div class="row" data-days="1,3,5" data-start="8:00" data-end="8:50">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159482" target="_blank" rel="noopener">BIBLE</a>
+        <div class="time"><span class="hrs">8:00 &ndash; 8:50</span><span class="days">Mon &middot; Wed &middot; Fri</span></div>
+      </div>
+
+      <div class="row" data-days="2,4" data-start="8:00" data-end="8:50">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159564" target="_blank" rel="noopener">FORUM</a>
+        <div class="time"><span class="hrs">8:00 &ndash; 8:50</span><span class="days">Tue &middot; Thu</span></div>
+      </div>
+
+      <div class="row" data-days="1,2,3,4,5" data-start="8:55" data-end="9:35">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=156751" target="_blank" rel="noopener">MATH</a>
+        <div class="time"><span class="hrs">8:55 &ndash; 9:35</span><span class="days">Mon &ndash; Fri</span></div>
+      </div>
+
+      <div class="row" data-days="1,2,3,4,5" data-start="9:40" data-end="10:35">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=160528" target="_blank" rel="noopener">ENGLISH</a>
+        <div class="time"><span class="hrs">9:40 &ndash; 10:35</span><span class="days">Mon &ndash; Fri</span></div>
+      </div>
+
+      <div class="row" data-days="1,2,3,4,5" data-start="10:40" data-end="11:20">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=151502" target="_blank" rel="noopener">HISTORY</a>
+        <div class="time"><span class="hrs">10:40 &ndash; 11:20</span><span class="days">Mon &ndash; Fri</span></div>
+      </div>
+
+      <div class="row" data-days="1,2,3,4,5" data-start="11:20" data-end="12:30">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=85662" target="_blank" rel="noopener">LOUNGE</a>
+        <div class="time"><span class="hrs">11:20 &ndash; 12:30</span><span class="days">Mon &ndash; Fri</span></div>
+      </div>
+
+      <div class="row" data-days="1,3,5" data-start="12:30" data-end="1:00">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154365" target="_blank" rel="noopener">ADOBE</a>
+        <div class="time"><span class="hrs">12:30 &ndash; 1:00</span><span class="days">Mon &middot; Wed &middot; Fri</span></div>
+      </div>
+
+      <div class="row" data-days="1,2,3,4,5" data-start="1:05" data-end="2:00">
+        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=153973" target="_blank" rel="noopener">CHEMISTRY</a>
+        <div class="time"><span class="hrs">1:05 &ndash; 2:00</span><span class="days">Mon &ndash; Fri</span></div>
+      </div>
+
     </div>
 
     <footer>Foggy mountain photo via Unsplash</footer>
   </div>
+
+<script>
+(function () {
+  const rows = document.querySelectorAll('.row');
+
+  // Converts "8:00" -> 480, "12:30" -> 750, "1:05" -> 785 (hours 1-6 are PM)
+  function toMin(s) {
+    let [h, m] = s.split(':').map(Number);
+    if (h < 7) h += 12;
+    return h * 60 + m;
+  }
+
+  // Current day (0=Sun..6=Sat) and minutes since midnight in Central Time
+  function nowCentral() {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Chicago',
+      weekday: 'short',
+      hour: 'numeric',
+      minute: 'numeric',
+      hourCycle: 'h23'
+    }).formatToParts(new Date());
+    const get = t => parts.find(p => p.type === t).value;
+    const days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    return {
+      day: days[get('weekday')],
+      min: Number(get('hour')) * 60 + Number(get('minute'))
+    };
+  }
+
+  function update() {
+    const now = nowCentral();
+    rows.forEach(row => {
+      const days = row.dataset.days.split(',').map(Number);
+      const start = toMin(row.dataset.start);
+      const end = toMin(row.dataset.end);
+      const live = days.includes(now.day) && now.min >= start && now.min < end;
+      row.querySelector('.link-btn').classList.toggle('live', live);
+    });
+  }
+
+  update();
+  setInterval(update, 15000);
+})();
+</script>
 
 </body>
 </html>
