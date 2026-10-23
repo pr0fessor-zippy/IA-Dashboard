@@ -203,6 +203,9 @@
 (function () {
   const rows = document.querySelectorAll('.row');
 
+  // Minutes before the scheduled start/end that the red highlight switches on/off
+  const LEAD_MINUTES = 8;
+
   // Converts "8:00" -> 480, "12:30" -> 750, "1:05" -> 785 (hours 1-6 are PM)
   function toMin(s) {
     let [h, m] = s.split(':').map(Number);
@@ -231,8 +234,8 @@
     const now = nowCentral();
     rows.forEach(row => {
       const days = row.dataset.days.split(',').map(Number);
-      const start = toMin(row.dataset.start);
-      const end = toMin(row.dataset.end);
+      const start = toMin(row.dataset.start) - LEAD_MINUTES;
+      const end = toMin(row.dataset.end) - LEAD_MINUTES;
       const live = days.includes(now.day) && now.min >= start && now.min < end;
       row.querySelector('.link-btn').classList.toggle('live', live);
     });
