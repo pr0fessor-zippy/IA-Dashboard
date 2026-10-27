@@ -114,27 +114,31 @@
 
   .time {
     flex-shrink: 0;
-    width: 120px;
+    width: 165px;
     text-align: right;
     color: var(--mist);
     text-shadow: 0 1px 6px rgba(0,0,0,0.6);
   }
 
-  .time .hrs {
+  .slot {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     white-space: nowrap;
   }
 
-  .time .days {
-    display: block;
-    font-size: 0.7rem;
+  .slot + .slot {
+    margin-top: 5px;
+  }
+
+  .slot .days {
+    display: inline-block;
+    width: 38px;
+    text-align: left;
+    font-size: 0.68rem;
     opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-top: 3px;
-    white-space: nowrap;
   }
 
   footer {
@@ -152,65 +156,66 @@
     <h1>Class Links</h1>
     <p class="subtitle">Tap a room to join &middot; all times Central</p>
 
-    <div class="links">
-
-      <div class="row" data-days="1,3,5" data-start="8:00" data-end="8:40">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159482" target="_blank" rel="noopener">BIBLE</a>
-        <div class="time"><span class="hrs">8:00 &ndash; 8:40</span><span class="days">Mon &middot; Wed &middot; Fri</span></div>
-      </div>
-
-      <div class="row" data-days="2,4" data-start="8:00" data-end="8:40">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159564" target="_blank" rel="noopener">FORUM</a>
-        <div class="time"><span class="hrs">8:00 &ndash; 8:40</span><span class="days">Tue &middot; Thu</span></div>
-      </div>
-
-      <div class="row" data-days="1,2,3,4,5" data-start="8:45" data-end="9:35">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=156751" target="_blank" rel="noopener">MATH</a>
-        <div class="time"><span class="hrs">8:45 &ndash; 9:35</span><span class="days">Mon &ndash; Fri</span></div>
-      </div>
-
-      <div class="row" data-days="1,2,3,4,5" data-start="9:40" data-end="10:35">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=160528" target="_blank" rel="noopener">ENGLISH</a>
-        <div class="time"><span class="hrs">9:40 &ndash; 10:35</span><span class="days">Mon &ndash; Fri</span></div>
-      </div>
-
-      <div class="row" data-days="1,2,3,4,5" data-start="10:40" data-end="11:20">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=151502" target="_blank" rel="noopener">HISTORY</a>
-        <div class="time"><span class="hrs">10:40 &ndash; 11:20</span><span class="days">Mon &ndash; Fri</span></div>
-      </div>
-
-      <div class="row" data-days="1,2,3,4,5" data-start="11:20" data-end="12:10">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=85662" target="_blank" rel="noopener">LOUNGE</a>
-        <div class="time"><span class="hrs">11:20 &ndash; 12:10</span><span class="days">Mon &ndash; Fri</span></div>
-      </div>
-
-      <div class="row" data-days="1,3,5" data-start="12:10" data-end="1:00">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154365" target="_blank" rel="noopener">ADOBE</a>
-        <div class="time"><span class="hrs">12:10 &ndash; 1:00</span><span class="days">Mon &middot; Wed &middot; Fri</span></div>
-      </div>
-
-      <div class="row" data-days="1,2,3,4,5" data-start="1:05" data-end="2:00">
-        <a class="link-btn" href="https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=153973" target="_blank" rel="noopener">CHEMISTRY</a>
-        <div class="time"><span class="hrs">1:05 &ndash; 2:00</span><span class="days">Mon &ndash; Fri</span></div>
-      </div>
-
-    </div>
+    <div class="links" id="links"></div>
 
     <footer>Foggy mountain photo via Unsplash</footer>
   </div>
 
 <script>
 (function () {
-  const rows = document.querySelectorAll('.row');
-
   // Minutes before the scheduled start/end that the red highlight switches on/off
   const LEAD_MINUTES = 8;
+
+  // Day numbers: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+  const MWF = [1, 3, 5];
+  const TTH = [2, 4];
+  const MON_FRI = [1, 2, 3, 4, 5];
+
+  // Edit classes here. Each class can have one or more time slots (e.g. different times on MWF vs TTh).
+  const CLASSES = [
+    { name: 'BIBLE',     url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159482',
+      slots: [ { days: MWF, start: '8:00',  end: '8:40' } ] },
+
+    { name: 'FORUM',     url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=159564',
+      slots: [ { days: TTH, start: '8:00',  end: '8:30' } ] },
+
+    { name: 'MATH',      url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=156751',
+      slots: [ { days: MWF, start: '8:45',  end: '9:35' },
+               { days: TTH, start: '8:35',  end: '9:25' } ] },
+
+    { name: 'ENGLISH',   url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=160528',
+      slots: [ { days: MWF, start: '9:40',  end: '10:35' },
+               { days: TTH, start: '9:30',  end: '10:25' } ] },
+
+    { name: 'HISTORY',   url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=151502',
+      slots: [ { days: MWF, start: '10:40', end: '11:25' },
+               { days: TTH, start: '10:30', end: '11:15' } ] },
+
+    { name: 'LOUNGE',    url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=85662',
+      slots: [ { days: MWF, start: '11:25', end: '12:10' },
+               { days: TTH, start: '11:15', end: '12:10' } ] },
+
+    { name: 'ADOBE',     url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=154365',
+      slots: [ { days: MWF, start: '12:10', end: '1:00' } ] },
+
+    { name: 'CHEMISTRY', url: 'https://my.imperial-academy.org/mod/bigbluebuttonbn/view.php?id=153973',
+      slots: [ { days: MON_FRI, start: '1:05', end: '2:00' } ] }
+  ];
 
   // Converts "8:00" -> 480, "12:30" -> 750, "1:05" -> 785 (hours 1-6 are PM)
   function toMin(s) {
     let [h, m] = s.split(':').map(Number);
     if (h < 7) h += 12;
     return h * 60 + m;
+  }
+
+  function dayLabel(days) {
+    const same = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
+    if (same(days, MWF)) return 'MWF';
+    if (same(days, TTH)) return 'TTh';
+    if (same(days, MON_FRI)) return 'M–F';
+    const names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return days.map(d => names[d]).join(' ');
   }
 
   // Current day (0=Sun..6=Sat) and minutes since midnight in Central Time
@@ -230,14 +235,43 @@
     };
   }
 
+  // Build the list of rows
+  const container = document.getElementById('links');
+  const buttons = CLASSES.map(c => {
+    const row = document.createElement('div');
+    row.className = 'row';
+
+    const btn = document.createElement('a');
+    btn.className = 'link-btn';
+    btn.href = c.url;
+    btn.target = '_blank';
+    btn.rel = 'noopener';
+    btn.textContent = c.name;
+
+    const time = document.createElement('div');
+    time.className = 'time';
+    c.slots.forEach(s => {
+      const line = document.createElement('span');
+      line.className = 'slot';
+      line.innerHTML = '<span class="days">' + dayLabel(s.days) + '</span>' + s.start + ' &ndash; ' + s.end;
+      time.appendChild(line);
+    });
+
+    row.appendChild(btn);
+    row.appendChild(time);
+    container.appendChild(row);
+    return btn;
+  });
+
   function update() {
     const now = nowCentral();
-    rows.forEach(row => {
-      const days = row.dataset.days.split(',').map(Number);
-      const start = toMin(row.dataset.start) - LEAD_MINUTES;
-      const end = toMin(row.dataset.end) - LEAD_MINUTES;
-      const live = days.includes(now.day) && now.min >= start && now.min < end;
-      row.querySelector('.link-btn').classList.toggle('live', live);
+    CLASSES.forEach((c, i) => {
+      const live = c.slots.some(s => {
+        const start = toMin(s.start) - LEAD_MINUTES;
+        const end = toMin(s.end) - LEAD_MINUTES;
+        return s.days.includes(now.day) && now.min >= start && now.min < end;
+      });
+      buttons[i].classList.toggle('live', live);
     });
   }
 
